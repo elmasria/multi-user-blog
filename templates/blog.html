@@ -1,0 +1,7 @@
+{% extends "index.html" %}
+{% block content %}
+<div class="blog">
+	<div class="blog-title">{{blog.subject}}</div>
+	<pre class="blog-body">{{blog.get_content(blog.content) | safe}}</pre>
+</div>
+{% endblock %}

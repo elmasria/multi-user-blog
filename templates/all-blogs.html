@@ -1,0 +1,14 @@
+{% extends "index.html" %}
+{% block content %}
+
+{% for blog in blogs %}
+<div class="blog">
+	<div class="blog-title">
+		<a href="/blog/{{blog.key().id()}}">{{blog.subject}}</a>
+	</div>
+	<pre class="blog-body">{{blog.get_content(blog.content) | safe}}</pre>
+</div>
+{% endfor %}
+
+{% endblock %}
+

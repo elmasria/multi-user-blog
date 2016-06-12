@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Multi User Blog</title>
+	<link rel="stylesheet" href="/css/app.css">
+	<link rel="shortcut icon" type="image/ico" href="images/favicon.ico">
+</head>
+<body>
+	<h1>Multi User Blog</h1>
+	{% if user_logged_in %}
+	<h2>welcome, {{user_name}}</h2>
+	{% endif %}
+	<ul>
+		<li>
+			<a href="/">Home</a>
+		</li>
+		<li>
+			<a href="/newblog">Create New Blog</a>
+		</li>
+		{% if not user_logged_in %}
+		<li>
+			<a href="/signup">Sign Up</a>
+		</li>
+		<li>
+			<a href="/login">Log In</a>
+		</li>
+		{% endif %}
+		{% if user_logged_in %}
+		<li>
+			<a href="/logout">logout</a>
+		</li>
+		{% endif %}
+	</ul>
+	<div class="container">
+		{% block content %}
+
+		{% endblock %}
+	</div>
+</body>
+</html>
