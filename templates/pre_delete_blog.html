@@ -1,0 +1,13 @@
+{% extends "index.html" %}
+{% block content %}
+<div class="blog">
+	<form method="post">
+		<div class="blog-actions">
+			Are you sure you want to remove this post?
+			<input type="submit" value="remove">
+		</div>
+		<div class="blog-title">{{blog.subject}}</div>
+		<pre class="blog-body">{{blog.get_content(blog.content) | safe}}</pre>
+	</div>
+</form>
+{% endblock %}

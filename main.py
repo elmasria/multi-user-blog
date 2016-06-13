@@ -5,6 +5,9 @@ from pages import page_blog
 from pages import page_signup
 from pages import page_logout
 from pages import page_login
+from pages import page_edit_blog
+from pages import page_delete_blog
+from pages import page_success
 
 app = webapp2.WSGIApplication([
 	('/', page_home.main_page),
@@ -12,5 +15,9 @@ app = webapp2.WSGIApplication([
 	('/blog/(\d+)', page_blog.blog_by_id),
 	('/signup', page_signup.signup),
 	('/logout', page_logout.logout),
-	('/login', page_login.login)
+	('/login', page_login.login),
+	('/blog/edit/(\d+)', page_edit_blog.edit),
+	('/blog/delete/(\d+)', page_delete_blog.delete),
+	('/blog/delete/(\d+)', page_delete_blog.delete),
+	('/success', page_success.success)
 	], debug=True)

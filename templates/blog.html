@@ -2,6 +2,11 @@
 {% block content %}
 <div class="blog">
 	<div class="blog-title">{{blog.subject}}</div>
+	<div class="blog-actions">
+		<a href="/blog/delete/{{blog.key().id()}}">Remove</a>
+
+		<a href="/blog/edit/{{blog.key().id()}}">Edit</a>
+	</div>
 	<pre class="blog-body">{{blog.get_content(blog.content) | safe}}</pre>
 </div>
 {% endblock %}
