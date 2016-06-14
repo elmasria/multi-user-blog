@@ -9,4 +9,17 @@
 	</div>
 	<pre class="blog-body">{{blog.get_content(blog.content) | safe}}</pre>
 </div>
+
+<form action="/blog/{{blog.key().id()}}" method="post">
+	<label for="comment">
+		<span>comment</span>
+		<input type="text" id="comment" name="comment">
+		<input type="submit" value="insert comment">
+	</label>
+</form>
+<ul>
+	{% for comment in comments %}
+	<li>{{comment.comment_content}}</li>
+	{% endfor %}
+</ul>
 {% endblock %}
