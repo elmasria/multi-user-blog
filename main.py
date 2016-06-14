@@ -8,6 +8,8 @@ from pages import page_login
 from pages import page_edit_blog
 from pages import page_delete_blog
 from pages import page_success
+from pages import page_edit_comment
+from pages import page_delete_comment
 
 app = webapp2.WSGIApplication([
 	('/', page_home.main_page),
@@ -18,6 +20,7 @@ app = webapp2.WSGIApplication([
 	('/login', page_login.login),
 	('/blog/edit/(\d+)', page_edit_blog.edit),
 	('/blog/delete/(\d+)', page_delete_blog.delete),
-	('/blog/delete/(\d+)', page_delete_blog.delete),
-	('/success', page_success.success)
+	('/success', page_success.success),
+	('/comment/edit/(\d+)', page_edit_comment.edit),
+	('/comment/delete/(\d+)', page_delete_comment.delete)
 	], debug=True)

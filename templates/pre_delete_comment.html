@@ -1,0 +1,12 @@
+{% extends "index.html" %}
+{% block content %}
+<div class="comment">
+	<form method="post">
+		<div class="comment-actions">
+			Are you sure you want to remove this comment?
+			<input type="submit" value="remove">
+		</div>
+		<div class="comment">{{comment}}</div>
+	</div>
+</form>
+{% endblock %}
