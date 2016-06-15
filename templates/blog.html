@@ -1,7 +1,10 @@
 {% extends "index.html" %}
 {% block content %}
+<form method="post">
 <div class="blog">
-	<div class="blog-title">{{blog.subject}}</div>
+{{error}}
+	<span>{{likes}}</span>
+	<div class="blog-title">{{blog.subject}} <input type="submit" value="like" name="like" id="like"></div>
 	<div class="blog-actions">
 		<a href="/blog/delete/{{blog.key().id()}}">Remove</a>
 
@@ -10,13 +13,12 @@
 	<pre class="blog-body">{{blog.get_content(blog.content) | safe}}</pre>
 </div>
 
-<form method="post">
 	<label for="comment">
 		<span>comment</span>
 	</label>
 		<textarea name="comment" id="comment"></textarea>
 		<input type="submit" value="insert comment">
-</form>
+
 <ul>
 	{% for comment in comments %}
 	<li>{{comment.comment_content}}
@@ -25,4 +27,5 @@
 	</li>
 	{% endfor %}
 </ul>
+</form>
 {% endblock %}

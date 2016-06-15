@@ -12,6 +12,8 @@ SecurityCode = "SecuredUdacityPassword"
 def blog_key(name = 'default'):
 	return db.Key.from_path('blogs', name)
 
+def like_key(name = 'default'):
+	return db.Key.from_path('likes', name)
 
 def comment_key(name = 'default'):
 	return db.Key.from_path('comments', name)
