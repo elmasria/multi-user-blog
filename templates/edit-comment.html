@@ -1,12 +1,14 @@
 {% extends "index.html" %}
 {% block content %}
 <form method="post">
+ <div class="form-group">
 	<label for="comment">
-		<div>comment</div>
-		<textarea name="comment" id="comment" >{{comment}}</textarea>
-	</label>
-	<br/>
-	<input type="submit" value="Save">
-	<div class="error">{{error}}</div>
+		Comment</label>
+		<textarea  class="form-control" rows="10" name="comment" id="comment" >{{comment}}</textarea>
+
+  </div>
+	<input type="submit" class="btn btn-default" value="Save">
+	<span class="help-block error-help-text">{{error}}</span>
+
 </form>
 {% endblock %}

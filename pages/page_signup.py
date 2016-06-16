@@ -14,7 +14,7 @@ class signup(handler.Handler):
 	def register_user(self, un, pw, em):
 		u = users.User.by_name(un)
 		if u :
-			msg = 'That user already exists.'
+			msg = 'user already exists.'
 			self.render('signup.html', username_error = msg)
 		else :
 			new_user = users.User.register(un, pw, em)

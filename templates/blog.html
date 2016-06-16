@@ -1,31 +1,38 @@
 {% extends "index.html" %}
 {% block content %}
 <form method="post">
-<div class="blog">
-{{error}}
-	<span>{{likes}}</span>
-	<div class="blog-title">{{blog.subject}} <input type="submit" value="like" name="like" id="like"></div>
-	<div class="blog-actions">
-		<a href="/blog/delete/{{blog.key().id()}}">Remove</a>
+	<div class="blog">
+		<span class="help-block error-help-text">{{error}}</span>
+		<div class="row blog-header">
+			<div class="col-xs-10">
+				<h4>{{blog.subject}}&nbsp;
+					<a class="blog-action" href="/blog/edit/{{blog.key().id()}}"><span class="glyphicon glyphicon-edit"></span> Edit</a>&nbsp;
+					<a class="blog-action" href="/blog/delete/{{blog.key().id()}}"><span class="glyphicon glyphicon-remove-sign"></span> Remove</a>&nbsp;
+					<input type="submit"  class="btn-like" value="👍" name="like" id="like">
+				</h4>
+			</div>
+			<div class="col-xs-2">
+				<h4>
+					<span class="nbr-of-likes">{{likes}}</span>&nbsp;<span class="glyphicon glyphicon-heart feature"></span>
+				</h4>
+			</div>
+		</div>
 
-		<a href="/blog/edit/{{blog.key().id()}}">Edit</a>
+		<blockquote class="justify-text">{{blog.get_content(blog.content) | safe}}</blockquote>
 	</div>
-	<pre class="blog-body">{{blog.get_content(blog.content) | safe}}</pre>
-</div>
-
-	<label for="comment">
-		<span>comment</span>
-	</label>
-		<textarea name="comment" id="comment"></textarea>
-		<input type="submit" value="insert comment">
-
-<ul>
+	<div class="form-group">
+		<label for="comment"><span class="glyphicon glyphicon-comment"></span>&nbsp;comment</label>
+		<textarea name="comment" rows="7" class="form-control" id="comment"></textarea>
+	</div>
+	<input type="submit"  class="btn btn-default"  value="Add Comment">
+	<h2 class="section-header">Comments</h2>
 	{% for comment in comments %}
-	<li>{{comment.comment_content}}
-		<a href="/comment/edit/{{comment.key().id()}}">Edit</a>
-		<a href="/comment/delete/{{comment.key().id()}}">Remove</a>
-	</li>
+	<div class="row">
+		<blockquote class="justify-text"> {{comment.comment_content}}</blockquote>
+		<a class="blog-action pull-right" href="/comment/edit/{{comment.key().id()}}"><span class="glyphicon glyphicon-edit"></span> Edit</a>
+		<a class="blog-action pull-right margin-right-10" href="/comment/delete/{{comment.key().id()}}"><span class="glyphicon glyphicon-remove-sign"></span> Remove</a>
+	</div>
 	{% endfor %}
-</ul>
+
 </form>
 {% endblock %}

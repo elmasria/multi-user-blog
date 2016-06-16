@@ -1,16 +1,17 @@
 {% extends "index.html" %}
 {% block content %}
-<form method="post">
-	<label for="subject">
-		<div>subject</div>
-		<input id="subject" type="text" name="subject" value="{{subject}}">
-	</label>
-	<label for="content">
-		<div>content</div>
-		<textarea name="content" id="content">{{content}}</textarea>
-	</label>
-	<br/>
-	<input type="submit" id="submitArt" value="Submit your Blog">
-	<div class="error">{{error}}</div>
+<form method="post"  class="form-horizontal">
+	<div class="form-group">
+		<label for="subject" >subject</label>
+		<input id="subject" class="form-control" placeholder="Suject" type="text" name="subject" value="{{subject}}">
+	</div>
+	<div class="form-group">
+		<label for="content" >content</label>
+		<textarea name="content" class="form-control" rows="10" id="content">{{content}}</textarea>
+	</div>
+	<div class="form-group">
+		<input type="submit" class="btn btn-default" id="submitArt" value="Submit your Blog">
+		<span class="help-block error-help-text">{{error}}</span>
+	</div>
 </form>
 {% endblock %}

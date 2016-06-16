@@ -50,7 +50,7 @@ class blog_by_id(handler.Handler):
 						new_like = like.like.add_like(post_id, user_id)
 						new_like.put()
 					else:
-						error = "you can like your poste one time"
+						error = "you can like a post one time"
 						self.render("blog.html", error=error, likes= likes.count(), comments = old_comments,  blog = blog, user_logged_in = self.user, user_name = self.user.username)
 			#self.redirect("/blog/%s" % blog_id)
 			# else:

@@ -1,3 +1,73 @@
 .error-help-text {
 	color: red;
 }
+
+a.blog-subject {
+	display: inline-block;
+	text-decoration:none;
+	white-space:nowrap;
+}
+
+.blog-subject:after {
+	content: '';
+	display: block;
+	height: 10px;
+	width: 0;
+	background: transparent;
+	transition: width .5s ease, background-color .5s ease;
+}
+
+.blog-subject:hover:after {
+	color:blue;
+	border-bottom: 3px solid #23527c;
+	width:100%;
+}
+
+.blog-action {
+	font-size: 0.75em;
+}
+
+.btn-like {
+	border: 0;
+	background: none;
+	color: #337ab7;
+	font-size: 1.75em;
+	font-weight: 700;
+}
+
+.btn-like:focus {
+	outline: 0;
+	background: none;
+}
+
+.nbr-of-likes, .glyphicon.glyphicon-heart.feature{
+	font-size: 1.75em;
+	color: #337ab7;
+}
+
+.glyphicon.glyphicon-heart.feature:before {
+	font-size: 0.75em;
+}
+
+.margin-right-10{
+
+	margin-right: 10px;
+}
+
+.section-header{
+	text-decoration:none;
+	white-space:nowrap;
+}
+
+.section-header:after {
+	content: '';
+	display: block;
+	height: 10px;
+	background: transparent;
+	color:blue;
+	border-bottom: 3px solid #23527c;
+}
+
+.justify-text {
+	text-align: justify;
+}
