@@ -8,6 +8,9 @@ handlers:
 - url: /css
   static_dir: css
 
+- url: /vendors
+  static_dir: vendors
+
 - url: /images
   static_dir: images
 

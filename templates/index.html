@@ -2,39 +2,57 @@
 <html>
 <head>
 	<title>Multi User Blog</title>
+	<link rel="stylesheet" href="/vendors/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" href="/css/app.css">
 	<link rel="shortcut icon" type="image/ico" href="images/favicon.ico">
+	<script src="/vendors/jquery/jquery-3.0.0.min.js"></script>
 </head>
 <body>
-	<h1>Multi User Blog</h1>
-	{% if user_logged_in %}
-	<h2>welcome, {{user_name}}</h2>
-	{% endif %}
-	<ul>
-		<li>
-			<a href="/">Home</a>
-		</li>
-		<li>
-			<a href="/newblog">Create New Blog</a>
-		</li>
-		{% if not user_logged_in %}
-		<li>
-			<a href="/signup">Sign Up</a>
-		</li>
-		<li>
-			<a href="/login">Log In</a>
-		</li>
-		{% endif %}
-		{% if user_logged_in %}
-		<li>
-			<a href="/logout">logout</a>
-		</li>
-		{% endif %}
-	</ul>
+	<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="/">Multi User Blog</a>
+			</div>
+			<ul class="nav navbar-nav">
+				<li >
+					<a href="/">Home</a>
+				</li>
+				<li>
+					<a href="/newblog">Create New Blog</a>
+				</li>
+
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				{% if not user_logged_in %}
+				<li>
+					<a href="/signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a>
+				</li>
+				<li>
+					<a href="/login"><span class="glyphicon glyphicon-log-in"> Login</a>
+				</li>
+				{% endif %}
+				{% if user_logged_in %}
+				<li>
+					{% if user_logged_in %}
+					<a href="#">Welcome, {{user_name}}</a>
+					{% endif %}
+				</li>
+				<li>
+					<a href="/logout"><span class="glyphicon glyphicon-log-out"></span> logout</a>
+				</li>
+				{% endif %}
+			</ul>
+		</div>
+	</nav>
 	<div class="container">
 		{% block content %}
 
 		{% endblock %}
 	</div>
+	<script>
+		$(document).ready(function() {
+			$('a[href="' + this.location.pathname + '"]').parent().addClass('active');
+		});
+	</script>
 </body>
 </html>
