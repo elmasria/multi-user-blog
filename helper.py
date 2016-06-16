@@ -9,50 +9,57 @@ from google.appengine.ext import db
 SecurityCode = "SecuredUdacityPassword"
 
 
-def blog_key(name = 'default'):
-	return db.Key.from_path('blogs', name)
-
-def like_key(name = 'default'):
-	return db.Key.from_path('likes', name)
-
-def comment_key(name = 'default'):
-	return db.Key.from_path('comments', name)
+def blog_key(name='default'):
+    return db.Key.from_path('blogs', name)
 
 
-def user_key(name = 'default'):
-	return db.Key.from_path('users', name)
+def like_key(name='default'):
+    return db.Key.from_path('likes', name)
+
+
+def comment_key(name='default'):
+    return db.Key.from_path('comments', name)
+
+
+def user_key(name='default'):
+    return db.Key.from_path('users', name)
 
 
 def make_salt():
-	"""
-		generate random 5 letters
-	"""
-	return ''.join(random.choice(string.letters) for x in xrange(5))
+    """
+            generate random 5 letters
+    """
+    return ''.join(random.choice(string.letters) for x in xrange(5))
 
-def hash_password(name, pw, slt = None):
-	"""
-		hash password using sha256
-	"""
-	salt = slt or make_salt()
-	h = hashlib.sha256(name + pw + salt).hexdigest()
-	return '%s|%s' % (h, salt)
+
+def hash_password(name, pw, slt=None):
+    """
+            hash password using sha256
+    """
+    salt = slt or make_salt()
+    h = hashlib.sha256(name + pw + salt).hexdigest()
+    return '%s|%s' % (h, salt)
+
 
 def valid_pw(name, pw, h):
-	return hash_password(name, pw, h.split("|")[1]) == h
+    return hash_password(name, pw, h.split("|")[1]) == h
+
 
 def return_valid_html(s):
-	return s.replace('\n', '<br>')
+    return s.replace('\n', '<br>')
+
 
 def make_secure_val(val):
-	"""
-		return value and it is hashed using hmac
-	"""
-	return '%s|%s' % (val, hmac.new(SecurityCode, val).hexdigest())
+    """
+            return value and it is hashed using hmac
+    """
+    return '%s|%s' % (val, hmac.new(SecurityCode, val).hexdigest())
+
 
 def check_secure_val(secure_val):
-	# get the original value
-	val = secure_val.split('|')[0]
-	# check if the value is valid
-	if secure_val == make_secure_val(val):
-		# return valid value
-		return val
+    # get the original value
+    val = secure_val.split('|')[0]
+    # check if the value is valid
+    if secure_val == make_secure_val(val):
+        # return valid value
+        return val
