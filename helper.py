@@ -24,9 +24,15 @@ def user_key(name = 'default'):
 
 
 def make_salt():
+	"""
+		generate random 5 letters
+	"""
 	return ''.join(random.choice(string.letters) for x in xrange(5))
 
 def hash_password(name, pw, slt = None):
+	"""
+		hash password using sha256
+	"""
 	salt = slt or make_salt()
 	h = hashlib.sha256(name + pw + salt).hexdigest()
 	return '%s|%s' % (h, salt)
@@ -38,6 +44,9 @@ def return_valid_html(s):
 	return s.replace('\n', '<br>')
 
 def make_secure_val(val):
+	"""
+		return value and it is hashed using hmac
+	"""
 	return '%s|%s' % (val, hmac.new(SecurityCode, val).hexdigest())
 
 def check_secure_val(secure_val):

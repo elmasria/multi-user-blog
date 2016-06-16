@@ -10,14 +10,17 @@ class Blog(db.Model):
 	last_modified = db.DateTimeProperty(auto_now_add = True)
 
 	def get_content(self, s):
+		"""
+			Return a valid HTML by
+			replacing the new line "\n" by "<br>"
+		"""
 		return helper.return_valid_html(s)
-
-	def render(self):
-		self._render_text = self.content.replace('\n', '<br>')
-		return render_str("blog.html", p = self)
 
 	@classmethod
 	def add_blog(cls, subject, content, created_by):
+		"""
+			Return Blog object with the given input
+		"""
 		return cls(parent = helper.blog_key(),
 				   subject = subject,
 				   content = content,

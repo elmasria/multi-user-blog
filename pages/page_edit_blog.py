@@ -12,6 +12,7 @@ class edit(handler.Handler):
 			if blog.created_by == user_id:
 				self.render("new-blog.html", subject= blog.subject, content= blog.content, user_logged_in = self.user, user_name = self.user.username)
 			else:
+				# user not allowed to Edit other user blogs
 				self.render("not-allowed.html", not_allowed = True , base_page = "blog", requested_id = blog_id,  user_logged_in = self.user, user_name = self.user.username)
 		else:
 			self.redirect("/signup")
@@ -21,6 +22,7 @@ class edit(handler.Handler):
 		blog = db.get(key)
 		user_id = self.read_secure_cookie('user_id')
 		if blog.created_by != user_id:
+			# user not allowed to Edit other user blogs
 			self.render("not-allowed.html", subject= blog.subject, content= blog.content, user_logged_in = self.user, user_name = self.user.username)
 		else:
 			subject = self.request.get("subject")

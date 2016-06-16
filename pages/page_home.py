@@ -12,7 +12,6 @@ class main_page(handler.Handler):
 		username = None
 		blogs = blog.Blog.all().order('-created')
 		if self.user:
-			# blogs = db.GqlQuery("select * from Blog order by created DESC limit 10")
 			uid = self.read_secure_cookie('user_id')
 			user = users.User.by_id(int(uid))
 			loged_in = True

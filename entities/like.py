@@ -9,6 +9,9 @@ class like(db.Model):
 
 	@classmethod
 	def add_like(cls, post_id, created_by):
+		"""
+			Return like object with the given input
+		"""
 		return cls(parent = helper.like_key(),
 				   post_id = post_id,
 				   created_by = created_by)

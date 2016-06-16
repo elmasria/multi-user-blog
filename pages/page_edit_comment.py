@@ -12,6 +12,7 @@ class edit(handler.Handler):
 			if comment.created_by == user_id:
 				self.render("edit-comment.html", comment= comment.comment_content, user_logged_in = self.user, user_name = self.user.username)
 			else:
+				# user not allowed to Edit other user comments
 				self.render("not-allowed.html", not_allowed = True , base_page = "blog", requested_id = comment.post_id,  user_logged_in = self.user, user_name = self.user.username)
 		else:
 			self.redirect("/signup")
@@ -21,6 +22,7 @@ class edit(handler.Handler):
 		comment = db.get(key)
 		user_id = self.read_secure_cookie('user_id')
 		if comment.created_by != user_id:
+			# user not allowed to Edit other user comments
 			self.render("not-allowed.html", not_allowed = True , base_page = "blog", requested_id = comment.post_id, user_logged_in = self.user, user_name = self.user.username)
 		else:
 			new_comment = self.request.get("comment")

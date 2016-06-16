@@ -26,6 +26,9 @@ class Handler(webapp2.RequestHandler):
 		self.response.headers.add_header('set-cookie', '%s=%s; Path=/' % (name, cookie_val))
 
 	def read_secure_cookie(self, name):
+		"""
+			read cookies and check if it is valid
+		"""
 		cookie_val = self.request.cookies.get(name)
 		return cookie_val and helper.check_secure_val(cookie_val)
 

@@ -10,10 +10,17 @@ class comment(db.Model):
 	last_modified = db.DateTimeProperty(auto_now_add = True)
 
 	def get_content(self, s):
+		"""
+			Return a valid HTML by
+			replacing the new line "\n" by "<br>"
+		"""
 		return helper.return_valid_html(s)
 
 	@classmethod
 	def add_comment(cls, comment_content, post_id, created_by):
+		"""
+			Return comment object with the given input
+		"""
 		return cls(parent = helper.comment_key(),
 				   comment_content = comment_content,
 				   post_id = post_id,

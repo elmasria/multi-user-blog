@@ -28,24 +28,25 @@ class signup(handler.Handler):
 		else:
 			self.render("signup.html")
 	def post(self):
+		# get user input
 		username_input = self.request.get('username')
 		password_input = self.request.get('password')
 		verify_input = self.request.get('verify')
 		email_input = self.request.get('email')
+
+		# check if input is valid (Required fields, match regular expressions)
 		if username_input and password_input and verify_input:
 			if regular_exp_username.match(username_input) and regular_exp_password.match(password_input):
 				if password_input == verify_input:
 					if email_input:
 						if regular_exp_email.match(email_input):
-							self.register_user(username_input,
-								password_input,
-								email_input)
+							# register user
+							self.register_user(username_input, password_input, email_input)
 						else:
 							self.render("signup.html", username = username_input, email = email_input ,  email_error = "Invalid Email" )
 					else:
-						self.register_user(username_input,
-							password_input,
-							email_input)
+						# register user
+						self.register_user(username_input, password_input, email_input)
 				else:
 					self.render("signup.html", username = username_input ,  email = email_input,  verify_error = "Password doesn't match" )
 			else:
