@@ -1,4 +1,4 @@
-# Multi Blog Project
+# Multi User Blog Project
 
 A basic blog application, written in Python.
 
